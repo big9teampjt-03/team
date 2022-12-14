@@ -31,15 +31,15 @@
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
     <li class="nav-item"><a class="nav-link" href="/board/boardCounsel">전문의 상담</a></li>
-    <li class="nav-item"><a class="nav-link" href="/board/boardDocResearch">전문의 찾기</a></li>
+    <li class="nav-item"><a class="nav-link" href="/board/boardDocSearch">전문의 찾기</a></li>
     <li class="nav-item"><a class="nav-link" href="/board/boardQuestion">자유 게시판</a></li>
 	<li class="nav-item"><a class="nav-link" href="/board/boardPetStory">펫스토리</a></li>
   </ul>
   
   <ul class="navbar-nav">
   <sec:authorize access="isAnonymous()">
-    <li class="nav-item"><a class="nav-link"  href="/login">Log In</a></li>
-    <li class="nav-item"><a class="nav-link"  href="/register">Sign Up</a></li>
+    <li class="nav-item"><a class="nav-link"  href="/member/loginPro">Log In</a></li>
+    <li class="nav-item"><a class="nav-link"  href="/member/join">Sign Up</a></li>
     </sec:authorize>
   <sec:authorize access="isAuthenticated()"> <!-- 일반 회원, 권한명 바꿔야 함 -->
     <li class="nav-item"><a class="nav-link" href="/logout">Log Out(<sec:authentication property="principal.user.username" />)</a></li>
