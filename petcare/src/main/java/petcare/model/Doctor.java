@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 public class Doctor {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long doctor_id;
+	private Long doctorID;
 	private String username;
 	private String password;
 	private String doccareer;
@@ -35,6 +35,6 @@ public class Doctor {
 	private MultipartFile uploadprofile;
 	private String profileimage;
 	
-	private boolean approval; // char의 Y/N로 바꾸는게 나을수도? (12/13 민지)
+	private boolean approval; 
 	private Date approvaldate;
 }

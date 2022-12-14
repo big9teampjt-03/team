@@ -27,13 +27,13 @@ import lombok.Setter;
 @Entity
 public class BoardCounsel {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long counsel_id;
+	private Long counselID;
 	private String title;
 	private String content;
 	@Column(nullable=false)
 	private String username;
 	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP) // 교재 75페이지 참고
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date regdate;
 	private Long hitcount;
@@ -47,7 +47,7 @@ public class BoardCounsel {
 	private boolean secret;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="memberID")
 	private Member member;
 	
 	@Transient

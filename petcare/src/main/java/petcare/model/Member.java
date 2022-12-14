@@ -13,7 +13,7 @@ import lombok.Setter;
 @Entity
 public class Member {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long member_id;
+	private Long memberID;
 	
 	@Column(nullable=false)
 	private String username;

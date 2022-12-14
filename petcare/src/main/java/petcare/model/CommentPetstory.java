@@ -23,7 +23,7 @@ import lombok.Setter;
 @Entity
 public class CommentPetstory {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long competstory_id;
+	private Long competstoryID;
 	private String username;
 	private String content;
 	@CreationTimestamp
@@ -40,11 +40,11 @@ public class CommentPetstory {
 	private BoardPetstory bPetstoryl;
 	
 	@ManyToOne
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="memberID")
 	private Member member;
 	
 	@ManyToOne
-	@JoinColumn(name="doctor_id")
+	@JoinColumn(name="doctorID")
 	private Doctor doctor;
 	
 }

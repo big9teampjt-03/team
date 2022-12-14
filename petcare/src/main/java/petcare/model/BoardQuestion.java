@@ -28,13 +28,13 @@ import lombok.Setter;
 @Entity
 public class BoardQuestion {
 		@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-		private Long question_id;
+		private Long questionID;
 		private String title;
 		private String content;
 		@Column(nullable=false)
 		private String username;
 		@CreationTimestamp
-		@Temporal(TemporalType.TIMESTAMP) // 교재 75페이지 참고
+		@Temporal(TemporalType.TIMESTAMP)
 		@JsonFormat(pattern="yyyy-MM-dd")
 		private Date regdate;
 		private Long hitcount;
@@ -47,11 +47,11 @@ public class BoardQuestion {
 		private Long likes;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name="member_id")
+		@JoinColumn(name="memberID")
 		private Member member;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name="doctor_id")
+		@JoinColumn(name="doctorID")
 		private Doctor doctor;
 		
 		@Transient

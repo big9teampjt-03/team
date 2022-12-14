@@ -23,7 +23,7 @@ import lombok.Setter;
 @Entity
 public class CommentCounsel {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long comcounsel_id;
+	private Long comcounselID;
 	private String username;
 	private String content;
 	@CreationTimestamp
@@ -40,10 +40,10 @@ public class CommentCounsel {
 	private BoardCounsel bCounsel;
 	
 	@ManyToOne
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="memberID")
 	private Member member;
 	
 	@ManyToOne
-	@JoinColumn(name="doctor_id")
+	@JoinColumn(name="doctorID")
 	private Doctor doctor;
 }

@@ -15,10 +15,10 @@ import lombok.Setter;
 @Entity
 public class BoardDocResearch {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long docresearch_id;
+	private Long docresearchID;
 	private String map;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="memberID")
 	private Doctor doctor;
 }

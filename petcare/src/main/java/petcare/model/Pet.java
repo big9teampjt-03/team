@@ -27,7 +27,7 @@ import lombok.Setter;
 public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long pet_id;
+	private Long petID;
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -38,7 +38,7 @@ public class Pet {
 	private String petbreed;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="memberID")
 	private Member member;
 
 	@Transient
