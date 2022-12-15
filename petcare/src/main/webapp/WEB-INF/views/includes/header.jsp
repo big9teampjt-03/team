@@ -33,7 +33,7 @@
     <li class="nav-item"><a class="nav-link" href="/board/boardCounsel">전문의 상담</a></li>
     <li class="nav-item"><a class="nav-link" href="/board/boardDocSearch">전문의 찾기</a></li>
     <li class="nav-item"><a class="nav-link" href="/board/boardQuestion">자유 게시판</a></li>
-	<li class="nav-item"><a class="nav-link" href="/board/boardPetStory">펫스토리</a></li>
+	<li class="nav-item"><a class="nav-link" href="/board/list">펫스토리</a></li>
   </ul>
   
   <ul class="navbar-nav">
