@@ -27,11 +27,27 @@ import petcare.service.MemberService;
 	public class MemberController {
 		private final MemberService mService;
 		private final MemberRepository mRepository;
+		
+		@GetMapping("/member/memberJoin")
+		public String memberjoin() {
+			return "/member/memberJoin";
+		}
+		
+		@PostMapping("/member/memberJoin")
+		@ResponseBody
+		public String memberjoin(@RequestBody Member member) {
+			if(mRepository.findByUsername(member.getUsername())!=null) {
+			return "fail";
+			}
+			mService.save(member);
+			return "success";
+		}
 
-		
-
-		
-		
+//		@GetMapping("/login")
+//		public String login() {
+//			return "login";
+//		}
+//		
 		
 		
 		@GetMapping("/member/memberlist")

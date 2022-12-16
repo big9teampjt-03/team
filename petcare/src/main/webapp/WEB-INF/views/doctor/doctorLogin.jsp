@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 <div class="container">
-	<form action="login" method="post" id="frm">
+	<form action="doctorLogin" method="post" id="frm">
 		<div class="form-group">
 			<label for="username">이메일:</label> <input type="email" id="username"
 				name="username" class="form-control" placeholder="이메일을 입력하세요." />

@@ -7,8 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
+import petcare.model.Admin;
+import petcare.model.Doctor;
 import petcare.model.Member;
-import petcare.model.Role;
 
 @Getter
 public class PrincipalMember implements UserDetails {
@@ -22,9 +23,13 @@ public class PrincipalMember implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collect = new ArrayList<>();
-		collect.add(()->{
-			return mb.getRole().value();
+		collect.add(new GrantedAuthority() {
+			@Override
+			public String getAuthority() {
+				return "ROLE_" + mb.getRole().value();
+			}
 		});
+		collect.add(() -> {return "ROLE_"+mb.getRole().value();});
 		return collect;
 	}
 
@@ -57,5 +62,4 @@ public class PrincipalMember implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-
 }

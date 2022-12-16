@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../includes/header.jsp"%>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
 
 <div class="container">
 	<h3>JOIN</h3>
 	<div class="form-group">
-		<label for="email">이메일:</label> <input type="email"
-			class="form-control" id="email" placeholder="이메일을 입력하세요."
-			name="email">
+		<label for="username">이메일:</label> <input type="email"
+			class="form-control" id="username" placeholder="이메일을 입력하세요."
+			name="username">
 	</div>
 	<input type="button" class="btn btn-secondary" onclick="btnEmail" value="중복확인"/>
 	<div class="form-group">
@@ -23,22 +23,22 @@
 		</div>
 
 	<div class="form-group">
-		<label for="nick">닉네임:</label> <input type="text"
-			class="form-control" id="nick" placeholder="닉네임을 입력하세요."
-			name="nick">
+		<label for="nickname">닉네임:</label> <input type="text"
+			class="form-control" id="nickname" placeholder="닉네임을 입력하세요."
+			name="nickname">
 	</div>
 	<div class="form-group">
-		<label for="tel">휴대폰번호:</label> <input type="text"
-			class="form-control" id="tel" placeholder="전화번호를 입력하세요."
-			name="tel">
+		<label for="phone">휴대폰번호:</label> <input type="text"
+			class="form-control" id="phone" placeholder="전화번호를 입력하세요."
+			name="phone">
 	</div>
 	<button class="btn btn-secondary" id="btnJoin">회원가입</button>
 
 	<script>
 		$("#btnJoin").click(function() {
-			if ($("#email").val() == "") {
+			if ($("#username").val() == "") {
 				alert("이메일 입력하세요.")
-				$("#email").focus();
+				$("#username").focus();
 				return false;
 			}
 			if ($("#password").val() == "") {
@@ -51,26 +51,26 @@
 				$("#pass_check").focus();
 				return false;
 			}
-			if ($("#nick").val() == "") {
+			if ($("#nickname").val() == "") {
 				alert("닉네임을 입력하세요.")
-				$("#nick").focus();
+				$("#nickname").focus();
 				return false;
 			}
-			if ($("#tel").val() == "") {
+			if ($("#phone").val() == "") {
 				alert("번호를 입력하세요.")
-				$("#tel").focus();
+				$("#phone").focus();
 				return false;
 			}
 			var dataParam = {
-				"email" : $("#email").val(),
+				"username" : $("#username").val(),
 				"password" : $("#password").val(),
 				"pass_check" : $("#pass_check").val(),
-				"nick" : $("#nick").val(),
-				"tel" : $("#tel").val()
+				"nickname" : $("#nickname").val(),
+				"phone" : $("#phone").val()
 			}
 			$.ajax({
 				type : "POST",
-				url : "/join",
+				url : "/member/memberJoin",
 				contentType : "application/json;charset=utf-8",
 				data : JSON.stringify(dataParam)
 			}).done(function(resp) {
@@ -89,3 +89,4 @@
 		
 	</script>
 </div>
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
