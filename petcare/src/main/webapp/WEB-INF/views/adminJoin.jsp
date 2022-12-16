@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../includes/header.jsp"%>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
 <div class="container">
 	<h3>JOIN</h3>
 	<div class="form-group">
-		<label for="email">이메일:</label> <input type="text"
+		<label for="email">이메일:</label> <input type="email"
 			class="form-control" id="email" placeholder="Enter Email"
 			name="email">
 	</div>
@@ -68,7 +68,7 @@
 			}
 			$.ajax({
 				type : "POST",
-				url : "/join",
+				url : "/adminJoin",
 				contentType : "application/json;charset=utf-8",
 				data : JSON.stringify(dataParam)
 			}).done(function(resp) {
@@ -84,5 +84,7 @@
 				alert("회원가입실패")
 			})
 		})
+		
 	</script>
 </div>
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>

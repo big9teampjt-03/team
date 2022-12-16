@@ -3,6 +3,8 @@ package petcare.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +28,9 @@ public class Doctor {
 	private String dochospitaltel;
 	private String dochospitaladdr;
 	private String dochospitalpostal;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	@Transient
 	private MultipartFile uploadlicense;

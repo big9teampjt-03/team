@@ -1,10 +1,15 @@
 package petcare.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +23,12 @@ public class Member {
 	@Column(nullable=false)
 	private String username;
 	private String password;
+	private String nickname;
 	private String phone;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
+	@OneToMany(mappedBy="member") // hotel 참조하도록 함
+	private List<Pet> pets;
 }

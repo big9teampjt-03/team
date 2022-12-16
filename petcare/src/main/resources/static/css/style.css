@@ -31,8 +31,8 @@ body {
 }
 
 .bg-c-lite-green {
-        background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
-    background: linear-gradient(to right, #ee5a6f, #f29263);
+        background: -webkit-gradient(linear, left top, right top, from(#74D19D), to(#2E8B57));
+    background: linear-gradient(to right, #2E8B57, #74D19D);
 }
 
 .user-profile {
@@ -54,7 +54,7 @@ body {
 
  
 h6 {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .card .card-block p {
@@ -63,7 +63,7 @@ h6 {
 
 @media only screen and (min-width: 1400px){
 p {
-    font-size: 14px;
+    font-size: 15px;
 }
 }
 
