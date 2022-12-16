@@ -1,7 +1,9 @@
 package petcare.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,12 +22,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-@Entity
+@Entity(name="board_counsel")
 public class BoardCounsel {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long counselID;
@@ -46,7 +50,11 @@ public class BoardCounsel {
 	private Long likes;
 	private boolean secret;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "bCounsel",cascade=CascadeType.REMOVE)
+	@JsonIgnoreProperties("bCounsel")
+	public List<CommentCounsel> clist;
+	
+	@ManyToOne// (fetch = FetchType.LAZY)
 	@JoinColumn(name="memberID")
 	private Member member;
 	

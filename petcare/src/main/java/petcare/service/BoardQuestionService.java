@@ -1,15 +1,18 @@
 package petcare.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import petcare.model.BoardQuestion;
-import petcare.model.Member;
 import petcare.repository.BoardQuestionRepository;
 
 @Transactional(readOnly = true) 
@@ -19,8 +22,20 @@ public class BoardQuestionService {
 	private BoardQuestionRepository repository;
 
 	@Transactional
-	public void insert(BoardQuestion board, Member member) {
-		board.setMember(member);
+	public void boardQuestioninsert(BoardQuestion board,String uploadFolder) {
+		UUID uuid = UUID.randomUUID();
+		MultipartFile b= board.getUploadquestion();
+		String uploadFileName="";
+		if(!b.isEmpty()) {
+			uploadFileName=uuid.toString()+"_"+b.getOriginalFilename();
+			File saveFile=new File(uploadFolder,uploadFileName);
+			try {
+				b.transferTo(saveFile);
+				board.setQuestionimage(uploadFileName);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
 		repository.save(board);
 	}
 
@@ -69,12 +84,12 @@ public class BoardQuestionService {
 	}
 
 	@Transactional 
-	public void delete(Long questionID) {
+	public void bqdelete(Long questionID) {
 		repository.deleteById(questionID);
 	}
 
 	@Transactional
-	public void update(BoardQuestion board) {
+	public void bqupdate(BoardQuestion board) {
 		BoardQuestion b = repository.findById(board.getQuestionID()).get();
 		b.setTitle(board.getTitle());
 		b.setContent(board.getContent());

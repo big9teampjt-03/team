@@ -1,15 +1,18 @@
 package petcare.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import petcare.model.BoardCounsel;
-import petcare.model.Member;
 import petcare.repository.BoardCounselRepository;
 
 
@@ -20,8 +23,20 @@ public class BoardCounselService {
 	private BoardCounselRepository repository;
 
 	@Transactional
-	public void insert(BoardCounsel board, Member member) {
-		board.setMember(member);
+	public void boardCounselinsert(BoardCounsel board,String uploadFolder) {
+		UUID uuid = UUID.randomUUID();
+		MultipartFile b= board.getUploadcounsel();
+		String uploadFileName="";
+		if(!b.isEmpty()) {
+			uploadFileName=uuid.toString()+"_"+b.getOriginalFilename();
+			File saveFile=new File(uploadFolder,uploadFileName);
+			try {
+				b.transferTo(saveFile);
+				board.setCounselimage(uploadFileName);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
 		repository.save(board);
 	}
 
@@ -71,17 +86,37 @@ public class BoardCounselService {
 
 	}
 
+	public BoardCounsel detail(Long counselID) {
+		return repository.findById(counselID).get();
+	} 
+	
 	@Transactional 
-	public void delete(Long counselID) {
+	public void bcdelete(Long counselID) {
 		repository.deleteById(counselID);
 	}
 
 	@Transactional
-	public void update(BoardCounsel board) {
-		BoardCounsel b = repository.findById(board.getCounselID()).get();
-		b.setTitle(board.getTitle());
-		b.setContent(board.getContent());
-		b.setRegdate(new Date());
+	public void bcupdate(BoardCounsel board,String uploadFolder) {
+		UUID uuid = UUID.randomUUID();
+		MultipartFile b= board.getUploadcounsel();
+		String uploadFileName="";
+		if(!b.isEmpty()) {
+			uploadFileName=uuid.toString()+"_"+b.getOriginalFilename();
+			File saveFile=new File(uploadFolder,uploadFileName);
+			try {
+				b.transferTo(saveFile);
+				board.setCounselimage(uploadFileName);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		repository.save(board);
+		BoardCounsel bc = repository.findById(board.getCounselID()).get();
+		bc.setTitle(board.getTitle());
+		bc.setContent(board.getContent());
+		bc.setRegdate(new Date());
+		bc.setUploadcounsel(board.getUploadcounsel());
+		bc.setCounselimage(board.getCounselimage());
 
 	}
 	
