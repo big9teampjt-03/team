@@ -22,6 +22,7 @@ public class Doctor {
 	private Long doctorID;
 	private String username;
 	private String password;
+	private String docname;
 	private String doccareer;
 	private String doclicensenum;
 	private String dochospital;

@@ -1,16 +1,19 @@
 package petcare.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
 public enum Role {
-	MEMBER, 
-	DOCTOR,
-	ADMIN;
+	MEMBER("ROLE_MEMBER"), 
+	DOCTOR("ROLE_DOCTOR"),
+	ADMIN("ROLE_ADMIN");
 	
-//	private String role;
-//	
-//	this.role=
+    String role;
+    
+    Role(String role) {
+    	this.role = role;
+    }
+    public String value() {
+    	return role;
+    }
 }

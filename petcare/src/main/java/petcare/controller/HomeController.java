@@ -59,7 +59,7 @@ public class HomeController {
 	
 	@GetMapping("doctorJoin")
 	public String doctorjoin() {
-		return "doctorjoin";
+		return "doctorJoin";
 	}
 	
 	@PostMapping("doctorJoin")
@@ -74,7 +74,7 @@ public class HomeController {
 	
 	@GetMapping("adminJoin")
 	public String adminjoin() {
-		return "adminjoin";
+		return "adminJoin";
 	}
 	
 	@PostMapping("adminJoin")

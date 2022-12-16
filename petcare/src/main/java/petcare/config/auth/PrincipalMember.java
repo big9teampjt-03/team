@@ -23,7 +23,7 @@ public class PrincipalMember implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collect = new ArrayList<>();
 		collect.add(()->{
-			return mb.getRole().toString();
+			return mb.getRole().value();
 		});
 		return collect;
 	}

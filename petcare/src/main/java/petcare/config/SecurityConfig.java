@@ -29,7 +29,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 				.permitAll()
 			.and()
 				.formLogin()
-				.loginPage("/member/login")
+				.loginPage("/login")
 				.defaultSuccessUrl("/")
 			.and()
 				.logout()
