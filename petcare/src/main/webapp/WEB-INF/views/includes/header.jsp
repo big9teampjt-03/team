@@ -38,18 +38,18 @@
   
   <ul class="navbar-nav">
   <sec:authorize access="isAnonymous()">
-    <li class="nav-item"><a class="nav-link"  href="/member/loginPro">Log In</a></li>
-    <li class="nav-item"><a class="nav-link"  href="/member/join">Sign Up</a></li>
+    <li class="nav-item"><a class="nav-link"  href="/login">Log In</a></li>
+    <li class="nav-item"><a class="nav-link"  href="/joinForm">Sign Up</a></li>
     </sec:authorize>
   <sec:authorize access="isAuthenticated()"> <!-- 일반 회원, 권한명 바꿔야 함 -->
-    <li class="nav-item"><a class="nav-link" href="/logout">Log Out(<sec:authentication property="principal.user.username" />)</a></li>
-    <li class="nav-item"><a class="nav-link" href="/member/update/${principal.user.id }">Update Profile</a></li>
+    <li class="nav-item"><a class="nav-link" href="/logout">Log Out(<sec:authentication property="principal.mb.username" />)</a></li>
+    <li class="nav-item"><a class="nav-link" href="/member/update/${principal.mb.username }">Update Profile</a></li>
     </sec:authorize>
-    <sec:authorize access="isAuthenticated()"> <!-- 의사, 권한명 바꿔야 함 -->
+    <sec:authorize access="hasRole('DOCTOR')"> <!-- 의사, 권한명 바꿔야 함 -->
     <li class="nav-item"><a class="nav-link" href="/logout">Log Out(<sec:authentication property="principal.user.username" />)</a></li>
     <li class="nav-item"><a class="nav-link" href="/doctor/update/${principal.user.id }">Update Profile</a></li>
     </sec:authorize>
-    <sec:authorize access="isAuthenticated()"> <!-- 관리자, 권한명 바꿔야 함 -->
+    <sec:authorize access="hasRole('ADMIN')"> <!-- 관리자, 권한명 바꿔야 함 -->
     <li class="nav-item"><a class="nav-link" href="/logout">Log Out(<sec:authentication property="principal.user.username" />)</a></li>
     <li class="nav-item"><a class="nav-link" href="/admin/memberList/${principal.user.id }">일반 회원 목록</a></li>
     <li class="nav-item"><a class="nav-link" href="/admin/doctorList/${principal.user.id }">의사 회원 목록</a></li>

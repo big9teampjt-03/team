@@ -7,44 +7,43 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import petcare.model.Member;
+import petcare.model.Doctor;
 import petcare.model.Role;
-import petcare.repository.MemberRepository;
+import petcare.repository.DoctorRepository;
+
 
 @Service
 @Transactional
-public class MemberService {
-
+public class DoctorService {
+	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
 	@Autowired
-	private MemberRepository mRepository;
-
-	public void save(Member member) {
-		String rawPwd = member.getPassword();
+	private DoctorRepository dRepository;
+	
+	public void save(Doctor doctor) {
+		String rawPwd = doctor.getPassword();
 		String encPwd = encoder.encode(rawPwd);
-		member.setPassword(encPwd);
-		member.setRole(Role.MEMBER);
-		mRepository.save(member);
-	}
-
-	public Page<Member> findAll(Pageable pageable) {
-		Page<Member> member = mRepository.findAll(pageable);// 아무 검색 없을때
-		return member;
-	}
-
-	public Long count() {
-		return mRepository.count();
+		doctor.setPassword(encPwd);
+		doctor.setRole(Role.DOCTOR);
+		dRepository.save(doctor);
 	}
 	
-	public Member detail(Long member_id) {
-		return mRepository.findById(member_id).get();
+	
+	public Doctor detail(Long doctor_id) {
+		return dRepository.findById(doctor_id).get();
 	}
-
+	
 	/*
 	 * public List<User>list(){ return userRepository.findAll();//findAll은 전체를 보게하는
 	 * 함수 이름. 내장되어있음 } }
 	 */
-
+	 
+	
+	  public Page<Doctor> findAll(Pageable pageable) {  
+	Page<Doctor> doctor = dRepository.findAll(pageable);// 아무 검색 없을때
+	  return doctor; 
+	  }
+	 
 }
