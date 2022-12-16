@@ -7,19 +7,14 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import petcare.model.Admin;
-import petcare.model.Doctor;
 import petcare.model.Member;
-import petcare.repository.AdminRepository;
-import petcare.repository.DoctorRepository;
 import petcare.repository.MemberRepository;
-import petcare.service.AdminService;
-import petcare.service.DoctorService;
 import petcare.service.MemberService;
 
 	@Controller
@@ -27,11 +22,32 @@ import petcare.service.MemberService;
 	public class MemberController {
 		private final MemberService mService;
 		private final MemberRepository mRepository;
+		
+		@GetMapping("/member/memberJoin")
+		public String memberjoin() {
+			return "/member/memberJoin";
+		}
+		
+		@PostMapping("/member/memberJoin")
+		@ResponseBody
+		public String memberjoin(@RequestBody Member member) {
+			if(mRepository.findByUsername(member.getUsername())!=null) {
+			return "fail";
+			}
+			mService.save(member);
+			return "success";
+		}
 
-		
-
-		
-		
+		@GetMapping("/memger/memberform/{memberID}") 
+		public String detail(@PathVariable Long memberID,Model model) { 
+			model.addAttribute("member",mService.detail(memberID)); 
+			return "member/memberform"; 
+			}
+//		@GetMapping("/login")
+//		public String login() {
+//			return "login";
+//		}
+//		
 		
 		
 		@GetMapping("/member/memberlist")

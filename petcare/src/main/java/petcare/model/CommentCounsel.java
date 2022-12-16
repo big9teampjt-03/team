@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-@Entity
+@Entity(name="comment_counsel")
 public class CommentCounsel {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long comcounselID;
@@ -31,9 +31,9 @@ public class CommentCounsel {
 	@Column(name="regdate")
 	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date regdate;
-	private int grp;
-	private int grps;
-	private int grpl;
+//	private int grp;
+//	private int grps;
+//	private int grpl;
 	
 	@ManyToOne
 	@JoinColumn(name="bcounselnum")
