@@ -22,6 +22,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -55,6 +56,7 @@ public class BoardQuestion {
 		
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name="wuser")
+		@JsonIgnore
 		private User user;
 		
 		@Transient

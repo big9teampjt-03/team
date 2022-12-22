@@ -57,6 +57,7 @@ public class BoardCounsel {
 	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn(name="wuser")
+	@JsonIgnore
 	private User user;
 	
 	@Transient

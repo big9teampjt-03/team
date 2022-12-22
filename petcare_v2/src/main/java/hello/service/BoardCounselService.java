@@ -3,8 +3,6 @@ package hello.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +16,11 @@ import hello.model.BoardCounsel;
 import hello.model.User;
 import hello.repository.BoardCounselRepository;
 
-
 @Transactional(readOnly = true)
 @Service
 public class BoardCounselService {
 	@Autowired
-	private BoardCounselRepository repository;
+	private BoardCounselRepository bcrepository;
 
 	@Transactional
 	public void boardCounselinsert(BoardCounsel board,User user,String uploadFolder) {
@@ -41,7 +38,7 @@ public class BoardCounselService {
 			}
 		}
 		board.setUser(user);
-		repository.save(board);
+		bcrepository.save(board);
 	}
 
 	/*
@@ -59,45 +56,45 @@ public class BoardCounselService {
 	// 페이징,검색 포함 전체보기
 	public Page<BoardCounsel> findAll(String field, String word, Pageable pageable) {
 
-		Page<BoardCounsel> lists = repository.findAll(pageable);// 아무 검색 없을때
+		Page<BoardCounsel> lists = bcrepository.findAll(pageable);// 아무 검색 없을때
 		if (field.equals("title")) {
-			lists = repository.findByTitleContaining(word, pageable);
+			lists = bcrepository.findByTitleContaining(word, pageable);
 		} else if (field.equals("content")) {
-			lists = repository.findByContentContaining(word, pageable);
+			lists = bcrepository.findByContentContaining(word, pageable);
 		}
 
 		return lists;
 	}
 
 	 public Long count(String field, String word) {
-			Long count = repository.count();
+			Long count = bcrepository.count();
 			if(field.equals("title")) {
-				count=repository.cntTitleSearch(word);
+				count=bcrepository.cntTitleSearch(word);
 			}else if (field.equals("content")){
-				count=repository.cntContentSearch(word);
+				count=bcrepository.cntContentSearch(word);
 			}
 			return count;
 		}
 
 	public Long count() {
-		return repository.count();
+		return bcrepository.count();
 	}
 
 	@Transactional
 	public BoardCounsel findById(Long counselID) {
-		BoardCounsel board = repository.findById(counselID).get();
+		BoardCounsel board = bcrepository.findById(counselID).get();
 		board.setHitcount(board.getHitcount() + 1);
 		return board;
 
 	}
 
 	public BoardCounsel detail(Long counselID) {
-		return repository.findById(counselID).get();
+		return bcrepository.findById(counselID).get();
 	} 
 	
 	@Transactional 
 	public void bcdelete(Long counselID) {
-		repository.deleteById(counselID);
+		bcrepository.deleteById(counselID);
 	}
 
 	@Transactional
@@ -115,8 +112,8 @@ public class BoardCounselService {
 				e.printStackTrace();
 			}
 		}
-		repository.save(board);
-		BoardCounsel bc =repository.findById(board.getCounselID()).get();
+		bcrepository.save(board);
+		BoardCounsel bc =bcrepository.findById(board.getCounselID()).get();
 		bc.setTitle(board.getTitle());
 		bc.setContent(board.getContent());
 		bc.setRegdate(new Date());
@@ -125,6 +122,4 @@ public class BoardCounselService {
 
 	}
 
-	
-	
 }

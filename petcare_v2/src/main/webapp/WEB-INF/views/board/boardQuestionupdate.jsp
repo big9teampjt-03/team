@@ -6,7 +6,7 @@
 <h3>${board.username } 의 글 수정하기</h3>
 <br>
 <form action ="boardQuestionupdate" method="post"  enctype="multipart/form-data">
-<input type="hidden" name="questionID" id="auestionID" value="${board.questionID }" />
+<input type="hidden" name="questionID" id="questionID" value="${board.questionID }" />
 <input type="hidden" name="questionimage" id="questionimage" value="${board.questionimage }" />
 	<div class="form-group">
 		<label for="title">제목:</label> <input type="text" class="form-control"
@@ -24,11 +24,8 @@
       <label for="uploadquestion">파일</label>
       <input type="file" class="form-control" id="uploadquestion" placeholder="Enter upload" name="uploadquestion" >
     </div>
-    <%-- 불러온 이미지 바로 뜨게 못하나?
-	<div class="form-group">
-		<label for="content">이미지</label>
-		<img class="card-img-top" src="/resources/img/${board.questionimage }">
-	</div> --%>
+    <input type="text" class="form-control"
+			id="questionimage" name="questionimage" value="기존파일명:${board.questionimage }" readonly="readonly">
 	<div class="form-group text-right">
 		<button type="button" class="btn btn-secondary btn-sm" id="btnModify">수정하기</button>
 	</div>
@@ -41,8 +38,8 @@ $("#btnModify").click(function(){
 			"questionID":$("#questionID").val(),
 			"title":$("#title").val(),
 			"content":$("#content").val(),
-			"uploadquestion":$("#uploadquestion").val(),  
-			"questionimage":$("#questionimage").val()
+			//"uploadquestion":$("#uploadquestion").val(),  
+			//"questionimage":$("#questionimage").val()
 	}
 	$.ajax({
 		type:'put',
@@ -51,7 +48,7 @@ $("#btnModify").click(function(){
 		data:JSON.stringify(data),
 		success:function(resp){
 			alert("수정완료")
-			location.href="/board/boardCounsel";
+			location.href="/board/boardQuestion";
 		},
 		error:function(e){
 			alert("수정실패")

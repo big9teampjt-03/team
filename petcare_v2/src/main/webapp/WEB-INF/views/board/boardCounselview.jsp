@@ -4,37 +4,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%-- <div class="container">
-<input type="hidden" name=counselID id="counselID" value="${board.counselID }" />
-<table class="table">
-		<tr>
-			<th>글번호</th>
-			<td>${board.counselID }</td>
-			<th>조회수</th>
-			<td>${board.hitcount }</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>${board.username }</td>
-			<th>작성일</th>
-			<td><fmt:formatDate value="${board.regdate }" pattern='yyyy-MM-dd'/></td>
-		</tr>
-		<tr>
-			<th>글제목</th>
-			<td colspan="3">${board.title }</td>
-		</tr>
-		<tr>
-			<th>글내용</th>
-			<td colspan="3">${board.content }</td>
-		</tr>
-	<tr>
-			<th>이미지</th>
-			<td colspan="3"> 
-			<img class="card-img-top" src="/resources/img/${board.counselimage }" style="width:100%">
-		</tr>
-	<br/><br/>
-	</table> --%>
-	
 	<input type="hidden" name=counselID id="counselID" value="${board.counselID }" />
 	 <div class="container"> 
     <table class="table">
@@ -80,7 +49,7 @@
 	<p align="right">
 		<button type="button" class="btn btn-success" id="BtnComment">댓글쓰기</button>
 	</p>
-	<div class="mt-5">댓글(${board.replycnt })</div>
+	<div class="mt-5">댓글(<span class="replySpan"></span>)</div>
 	
 	<div id="replyResult"></div>
 	</div>
@@ -92,10 +61,11 @@
 			url:"/reply/cslist/"+$("#counselID").val()
 		})
 		.done(function(resp){
+			//$(".replySpan").text(resp.cscount)
 			var str="<table class='table table-hover'>"
-			$.each(resp,function(key,val){
+			$.each(resp, function(key,val){
 				str+="<tr>"
-				str+="<td>"+val.username+"</td>"//val은 내용
+				str+="<td>"+val.username+"</td>"
 				str+="<td>"+val.content+"</td>"
 				str+="<td>"+val.regdate+"</td>"
 				if("${principal.user.username}"==val.username){
@@ -114,7 +84,7 @@
 		}
 		$.ajax({
 			type:'DELETE',
-			url:"/reply/delete/"+comcounselID
+			url:"/reply/cdelete/"+comcounselID
 		})//ajax
 		.done(function(resp){
 			alert(resp+"번 댓글 삭제 완료")
@@ -145,8 +115,7 @@
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data)
 		})
-		.done(function(resp,status){
-			alert(status)
+		.done(function(resp){
 			alert("댓글 추가 성공")
 			init();
 		})

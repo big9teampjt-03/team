@@ -29,10 +29,10 @@
       <label for="uploadquestion">파일</label>
       <input type="file" class="form-control" id="uploadquestion" placeholder="Enter upload" name="uploadquestion" >
     </div>
-     <div class="form-check form-check-inline mt-3">
+     <!-- <div class="form-check form-check-inline mt-3">
     <input class="form-check-input" type="checkbox" name="secret" id="secret">
     <label class="form-check-label">비밀글 설정</label>
-</div>
+</div> -->
  <%-- <c:if test="${board.secret == true}">
     <c:choose>
         <c:when test="${board.username eq member.vo.userid || member.authorities eq '[ROLE_ADMIN, ROLE_MEMBER]'}"> <!-- 작성자이거나 관리자일 때 -->
@@ -43,7 +43,38 @@
         </c:otherwise>
     </c:choose>                                            
 </c:if> --%>
-    <button type="submit" class="btn btn-primary">글쓰기</button>
+    <button type="submit" id="btnBoard" class="btn btn-primary">글쓰기</button>
     </form>
  </div>
+ <script>
+
+ $("#btnBoard").click(function(){
+	if($("#title").val()==""){
+		alert("제목을 작성하세요")
+		return false;
+	}
+	if($("#content").val()==""){
+		alert("내용을 작성하세요")
+		return false;
+	}
+	var data={
+			"title":$("#title").val(),
+			"content":$("#content").val()
+	}
+	$.ajax({
+		type:"POST",
+		url:"/board/boardQuestioninsert/"+$("#questionID").val(),
+		contentType:"application/json;charset=utf-8",
+		data:JSON.stringify(data)
+	})
+	.done(function(resp){
+		alert("게시글 작성 실패")
+	})
+	.fail(function(){
+	alert("게시글 작성 성공")
+	
+	})
+})
+
+ </script>
 <%@ include file="../includes/footer.jsp"%>

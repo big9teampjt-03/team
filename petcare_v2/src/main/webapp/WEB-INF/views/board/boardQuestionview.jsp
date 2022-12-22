@@ -1,90 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@include file ="../includes/header.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@include file="../includes/header.jsp"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%-- <div class="container">
-<input type="hidden" name="questionID" id="questionID" value="${board.questionID }" />
-<table class="table table-hover">
-		<tr>
-			<th>글번호</th>
-			<td>${board.questionID }</td>
-			<th>조회수</th>
-			<td>${board.hitcount }</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>${board.username }</td>
-			<th>작성일</th>
-			<td><fmt:formatDate value="${board.regdate }" pattern='yyyy-MM-dd'/></td>
-		</tr>
-		<tr>
-			<th>글제목</th>
-			<td colspan="3">${board.title }</td>
-		</tr>
-		<tr>
-			<th>글내용</th>
-			<td colspan="3">${board.content }</td>
-		</tr>
-		<tr>
-			<th>이미지</th>
-			<td colspan="3"> 
-			<img class="card-img-top" src="/resources/img/${board.questionimage }" style="width:100%">
-		</tr>
-	<br/><br/>
-	</table> --%>
-	<input type="hidden" name="questionID" id="questionID" value="${board.questionID }" />
-	 <div class="container"> 
-    <table class="table">
-					<br><br>
-					<div>
-						<div><h3 class="title ub-word">
-						<span class="title_headtext">${board.title }</span>
-						</h3>
-						</div>
-						</div>			
-						<hr>
-						<div>
-						<div class="writer ub-writer" data-nick="작성자" data-uid="" data-loc="view">
-							<div class="fl">
-								<span class='nickname' title='작성자'>작성자:<em>${board.user.nickname } | </em></span></span>		
-								<span class="date" title="작성일"><em>${board.regdate }</em></span>
-							</div>
-							<div class="fr">
-								<span class="count"><em>조회수: ${board.hitcount }</em></span>
-								<span class="comment"><em>댓글수:${board.replycnt }</em></span>
-							</div>
-							</div>
-							<hr>
-							<span class="content"><em>${board.content }</em></span>
-							</div>
-							<div>
-							<img class="card-img-top" src="/resources/img/${board.questionimage }" style="width:50%">
-						</div>
-				
-<c:if test="${principal.user.username==board.user.username}">
-	<button type="button" class="btn btn-primary"  id="btnUpdate">수정</button>
-		<button type="button" class="btn btn-secondary" id="btnDelete">삭제</button>
-		</c:if> 
-	</div>
-	
-	<br/><br/>
-	
-	<div class="container mt-5">
-		<div class="form-group">
-			<label for="comment">Comment:</label>
-			<textarea class="form-control" rows="5" id="msg" name="text"></textarea>
+<input type="hidden" name="questionID" id="questionID"
+	value="${board.questionID }" />
+<div class="container">
+	<table class="table">
+		<br><br>
+		<div>
+			<div>
+				<h3 class="title ub-word">
+					<span class="title_headtext">${board.title }</span>
+				</h3>
+			</div>
 		</div>
-		
-		<button type="button" class="btn btn-success" id="BtnComment">댓글쓰기</button>
-	
-	<div class="mt-5">댓글(${board.replycnt })</div>
-	
-	<div id="replyResult"></div>
-	</div>
-	
-	<script>
+		<hr>
+		<div>
+			<div class="writer ub-writer" data-nick="작성자" data-uid=""
+				data-loc="view">
+				<div class="fl">
+					<span class='nickname' title='작성자'>작성자:<em>${board.user.nickname }
+							| </em></span></span> <span class="date" title="작성일"><em>${board.regdate }</em></span>
+				</div>
+				<div class="fr">
+					<span class="count"><em>조회수: ${board.hitcount }</em></span> <span
+						class="comment"><em>댓글수:${board.replycnt }</em></span>
+				</div>
+			</div>
+			<hr>
+			<span class="content"><em>${board.content }</em></span>
+		</div>
+		<div>
+			<img class="card-img-top"
+				src="/resources/img/${board.questionimage }" style="width: 50%">
+		</div>
+
+		<c:if test="${principal.user.username==board.user.username}">
+			<button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
+			<button type="button" class="btn btn-secondary" id="btnDelete">삭제</button>
+		</c:if>
+		</div>
+
+		<br />
+		<br />
+
+		<div class="container mt-5">
+			<div class="form-group">
+				<label for="comment">Comment:</label>
+				<textarea class="form-control" rows="5" id="msg" name="text"></textarea>
+			</div>
+
+			<button type="button" class="btn btn-success" id="BtnComment">댓글쓰기</button>
+
+			<div class="mt-5">댓글(${board.replycnt })</div>
+
+			<div id="replyResult"></div>
+		</div>
+
+		<script>
 	var init=function(){
 		$.ajax({
 			type:"get",
@@ -94,7 +69,7 @@
 			var str="<table class='table table-hover'>"
 			$.each(resp,function(key,val){
 				str+="<tr>"
-				str+="<td>"+val.username+"</td>"//val은 내용
+				str+="<td>"+val.username+"</td>"
 				str+="<td>"+val.content+"</td>"
 				str+="<td>"+val.regdate+"</td>"
 				if("${principal.user.username}"==val.username){
@@ -107,13 +82,13 @@
 		})//done
 	}
 	
-	function fdel(cnum){
+	function fdel(comquestionID){
 		if(!confirm('정말 댓글을 삭제할까요?')){
 			return false;
 		}
 		$.ajax({
 			type:'DELETE',
-			url:"/reply/delete/"+comquestionID
+			url:"/reply/qdelete/"+comquestionID
 		})//ajax
 		.done(function(resp){
 			alert(resp+"번 댓글 삭제 완료")
@@ -144,8 +119,7 @@
 			contentType:"application/json;charset=utf-8",
 			data:JSON.stringify(data)
 		})
-		.done(function(resp,status){
-			alert(status)
+		.done(function(resp){
 			alert("댓글 추가 성공")
 			init();
 		})
@@ -179,4 +153,4 @@
 	})//btnDelete
 	init();
 	</script>
-<%@ include file="../includes/footer.jsp"%>
+		<%@ include file="../includes/footer.jsp"%>

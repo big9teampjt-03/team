@@ -7,8 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import hello.model.BoardCounsel;
+import hello.model.BoardPetstory;
 import hello.model.BoardQuestion;
 import hello.model.CommentCounsel;
+import hello.model.CommentPetStory;
 import hello.model.CommentQuestion;
 import hello.model.User;
 
@@ -28,4 +30,10 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Query("select sc from comment_question sc join fetch sc.user where wuser=?1")
 	public List<CommentQuestion> findByUser3(Long wuser);
+
+	@Query("select sc from bPetstoryl sc join fetch sc.user where wuser=?1")
+	public List<BoardPetstory> findByUser4(Long userid);
+	
+	@Query("select sc from comment_pet_story sc join fetch sc.user where wuser=?1")
+	public List<CommentPetStory> findByUser5(Long wuser);
 }

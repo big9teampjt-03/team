@@ -40,7 +40,7 @@ $("#btnModify").click(function(){
 			"counselID":$("#counselID").val(),
 			"title":$("#title").val(),
 			"content":$("#content").val(),
-			"uploadcounsel":$("#uploadcounsel").val(),  
+			//"uploadcounsel":$("#uploadcounsel").val(),  
 			//"counselimage":$("#counselimage").val()
 	}
 	$.ajax({
