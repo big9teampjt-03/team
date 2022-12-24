@@ -40,4 +40,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Query("select sc from pet sc join fetch sc.user where wuser=?1")
 	public List<Pet> findByUser6(Long wuser);
+	
+	@Query("select sc from pet sc join fetch sc.user where puser=?1")
+	public List<User> findByPets(Long puser); 
 }

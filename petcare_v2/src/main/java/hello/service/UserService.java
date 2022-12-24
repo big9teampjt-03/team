@@ -104,5 +104,9 @@ public class UserService {
 	public List<Pet> findByID6(Long wuser){
 		return uRepository.findByUser6(wuser);
 	}
+	
+	public List<User> list(Long puser) {
+		return uRepository.findByPets(puser);
+	}
 
 }

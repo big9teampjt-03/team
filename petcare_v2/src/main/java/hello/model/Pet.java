@@ -30,17 +30,20 @@ public class Pet {
 	private Long petid;
 	private String petname;
 	
-	@CreationTimestamp
+	// @CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date petbirth;
+	
+	@Transient
+	private String petbirths;
 	
 	private String petgender;
 	private String petweight;
 	private String petbreed;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "wuser")
+	@JoinColumn(name = "puser")
 	private User user;
 	
 	private String petneutering;

@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
-<div class="container mt-3">
-	<h3>애완동물 등록</h3><br/><br/>
-	
+<div class="container">
+	<h3>애완동물 등록</h3>
+	<form action="/pet" method="post" enctype="multipart/form-data">
 	<div class="form-group">
-		<label for="imagepet">사진:</label> <input type="file"
-			 id="imagepet"name="imagepet">
+		<label for="uploadpet">사진:</label> <input type="file"
+			 id="uploadpet"name="uploadpet">
 	</div>
 	
 	
@@ -18,14 +18,14 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="petbirth">생년월일:</label> <input type="date"
-			 id="petbirth" name="petbirth">
+		<label for="petbirths">생년월일:</label> <input type="date"
+			 id="petbirths" name="petbirths">
 	</div>
 	
 	<div class="form-group">
 	 <label for="petgender">성별:</label> 
-      남<input type="radio" name="gender"  id="petgender" value="남" checked >
-  		여<input type="radio" name="gender"  id="petgender" value="여" ><br>
+      남<input type="radio" name="petgender"  id="petgender" value="남" checked >
+  		여<input type="radio" name="petgender"  id="petgender" value="여" ><br>
 	</div>
 	
 	<div class="form-group">
@@ -34,6 +34,8 @@
 				name="petweight">
 		</div>
 		
+	
+	
 	<div class="form-group">
 	 <label for="petneutering">중성화여부:</label> 
       O<input type="radio" name="petneutering"  id="petneutering" value="O" checked >
@@ -47,18 +49,20 @@
 	<div id="pet">
 	품종:
 <select name="petbreed" id="petbreed"></select>
-<select name="petbreeds"id="petbreeds" ></select><br/><br/>
+<select name="petbreeds"id="petbreeds"></select>
+</div>
+	<button type="submit" class="btn btn-secondary" id="btnPet">등록</button>
 
+</form>
 	</div>
 	
-	<button type="button" class="btn btn-secondary" id="btnPet">등록</button>
 
 		<script>
 		const objTest ={
 				소형견: ['말티즈','포메라니안','프렌치 불도그','치와와','비글','요크셔 테리어','닥스훈트'
 					,'퍼그','시츄','테리어견','스피츠','푸들','시바견','아키타견','스키퍼키','잉글리시 코커 스패니얼'
 					,'라사압소','복서','달마티안','미니어처 핀셔','브뤼셀 그리펀','레케노아','테뷰런','잭 러셀 테리어'
-					,'실키 테리어','풍산개','삽살개','보스턴 테리어','티베탄 테리어','토이푸들','미니어처 슈나우저'],//key값 대분류 value값 소분류
+					,'실키 테리어','풍산개','삽살개','보스턴 테리어','티베탄 테리어','토이푸들','미니어처 슈나우저',],//key값 대분류 value값 소분류
 				중형견: ['비숑프리제','보더콜리','사모예드','웰시코기','진돗개','차우차우','시베리안 허스키','불 테리어','그레이트 피레니즈','핏불 테리어'],
 				대형견: ['래드라도 리트리버','저먼 셰퍼드','골든 리트리버','티베탄 마스티프','체서피크 베이 리트리버','플랫 코티드 리트리버','컬리 코티드 리트리버',
 					'도사견','블러드 하운드','불마스티프','마스티프','티베탄 마스티프','말리노이즈','벨지안 십도그','도베르만 핀셔'
@@ -78,7 +82,7 @@
 			    $('select[name=petbreeds]').val('');
 			})
 		});
-		//selextbox option  생성
+		//selectbox option  생성
 		function init(){
 			let petHtml='<option value="">===대분류===</option>';//대분류
 			let petsHtml='<option value="">===소분류===</option>';//소분류
@@ -101,7 +105,7 @@
 			});
 		}
 		
-		$("#btnPet").click(function() {
+		/* $("#btnPet").click(function() {
 								
 			var dataParam = {
 				"petname" : $("#petname").val(),
@@ -123,7 +127,7 @@
 			}).done(function(resp) {
 				if (resp == "success") {
 					alert("등록이 정상적으로 처리되었습니다.")
-					location.href="/pet/{userid}"
+					location.href="/pet"
 				} else if (resp == "fail") {
 					alert(".")
 					$("#username").val("")
@@ -132,8 +136,7 @@
 			.fail(function() {
 				alert("등록에 실패했습니다.")
 			})
-		})
+		}) */
 		
 	</script>
-</div>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
