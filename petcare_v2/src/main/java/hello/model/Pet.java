@@ -41,6 +41,7 @@ public class Pet {
 	private String petgender;
 	private String petweight;
 	private String petbreed;
+	private String petbreeds;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "puser")

@@ -26,7 +26,14 @@
        <c:if test="${list.secret == true}">
        <td>${list.counselID }</td>
     <c:choose>
-        <c:when test="${list.user.username eq principal.user.username || user.authorities eq '[ADMIN, USER, DOCTOR]'}"> <!-- 작성자이거나 관리자,의사일 때 -->
+        <c:when test="${list.user.username eq principal.user.username || principal.user.role == 'ADMIN'}"> <!-- 작성자이거나 관리자,의사일 때 -->
+            <td><a href="boardCounselview/${list.counselID}" ><i class="icofont-lock"></i><c:out value="${list.title}"/></a></td>
+        <td>${list.user.nickname }</td>
+            <td>${list.hitcount }</td>
+            <td>${list.regdate }</td>
+            <td>${list.replycnt}</td>
+        </c:when>
+        <c:when test="${list.user.username eq principal.user.username || principal.user.doctor.role == 'DOCTOR'}"> <!-- 작성자이거나 관리자,의사일 때 -->
             <td><a href="boardCounselview/${list.counselID}" ><i class="icofont-lock"></i><c:out value="${list.title}"/></a></td>
         <td>${list.user.nickname }</td>
             <td>${list.hitcount }</td>

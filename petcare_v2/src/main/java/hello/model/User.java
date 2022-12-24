@@ -48,7 +48,7 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JsonIgnoreProperties("user")
 	private List<Pet> pets;
 	
@@ -56,7 +56,22 @@ public class User implements Serializable {
 	@JsonIgnoreProperties("user")
 	private Doctor doctor;
 	
-//	@OneToMany(mappedBy="user")
-//	private List<BoardCounsel> list;
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<BoardCounsel> bclist;
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<BoardQuestion> bqlist;
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<BoardPetstory> bpslist;
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<CommentCounsel> cclist;
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<CommentQuestion> cqlist;
+	
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<CommentPetStory> cpslist;
 	
     }
