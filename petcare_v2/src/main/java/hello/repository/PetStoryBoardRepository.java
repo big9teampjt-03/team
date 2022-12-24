@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import hello.model.BoardPetstory;
 
-public interface PetStoryBoardRepository extends JpaRepository<BoardPetstory, Long>{
+public interface PetStoryBoardRepository extends JpaRepository<hello.model.BoardPetstory, Long>{
 	
 	public Page<BoardPetstory>findByTitleContaining(String title, Pageable pageable);
 

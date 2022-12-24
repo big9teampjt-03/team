@@ -41,7 +41,7 @@
 				value="${doctor.dochospitalpostal }" readonly="readonly">
 		</div>
 		<div class="form-group">
-			<label for="approval">승인 상태 (0:승인대기중, 1:승인, 2:거절, 3:추방):</label> <input type="text"
+			<label for="approval">승인 상태 (0:승인대기중, 1:승인, 2:거절, 3:정지):</label> <input type="text"
 				class="form-control" id="approval" name="approval"
 				value="${doctor.approval }" readonly="readonly">
 		</div>

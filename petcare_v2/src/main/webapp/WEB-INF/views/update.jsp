@@ -8,17 +8,17 @@
 	<c:choose>
 	<c:when test="${user.doctor.approval == null}">
 		<button type="button" class="btn btn-info btn"
-			onclick="location.href='/docupdate/${user.userid }';"
-			id="btnDocUpdate">전문가 정보 입력하기</button>
+			onclick="location.href='/docinsert/${user.userid }';"
+			id="btnDocInsert">전문가 정보 입력하기</button>
 	</c:when>
 	<c:when test="${user.doctor.approval == 0}">
 		<button type="button" class="btn btn-warning btn"
-			onclick="location.href='/docview/${user.userid }';"
+			onclick="location.href='/docview/${user.doctor.doctorid }';"
 			>승인 대기중입니다.</button>
 	</c:when>
 	<c:when test="${user.doctor.approval == 1}">
 		<button type="button" class="btn btn-success btn"
-		onclick="location.href='/docview/${user.userid }';"
+		onclick="location.href='/docview/${user.doctor.doctorid }';"
 		>전문가 정보 확인하기</button>
 	</c:when>
 		<c:when test="${user.doctor.approval == 2}">

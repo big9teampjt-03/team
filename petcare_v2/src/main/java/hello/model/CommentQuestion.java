@@ -40,6 +40,7 @@ public class CommentQuestion {
 	
 	@ManyToOne
 	@JoinColumn(name="wuser")
+	@JsonIgnore
 	private User user;
 	
 }

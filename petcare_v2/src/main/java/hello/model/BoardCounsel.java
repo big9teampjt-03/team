@@ -35,8 +35,7 @@ public class BoardCounsel {
 	private Long counselID;
 	private String title;
 	private String content;
-	@Column(nullable=false)
-	private String username;
+	
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern="yyyy-MM-dd")

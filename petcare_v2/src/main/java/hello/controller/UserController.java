@@ -18,6 +18,7 @@ import hello.model.BoardQuestion;
 import hello.model.CommentCounsel;
 import hello.model.CommentPetStory;
 import hello.model.CommentQuestion;
+import hello.model.Pet;
 import hello.model.User;
 import hello.repository.UserRepository;
 import hello.service.UserService;
@@ -35,6 +36,38 @@ public class UserController {
 		User u = uService.detail(userid);
 		model.addAttribute("user", u);
 		return "/userform";
+	}
+
+	// 마이페이지폼
+	@GetMapping("/userboardcounsel/{userid}")
+	public String adetail(@PathVariable Long userid, Model model) {
+		User u = uService.detail(userid);
+		model.addAttribute("user", u);
+		return "/userboardcounsel";
+	}
+
+	// 마이페이지폼
+	@GetMapping("/userboardquestion/{userid}")
+	public String bdetail(@PathVariable Long userid, Model model) {
+		User u = uService.detail(userid);
+		model.addAttribute("user", u);
+		return "/userboardquestion";
+	}
+
+	// 마이페이지폼
+	@GetMapping("/userboardpetstory/{userid}")
+	public String cdetail(@PathVariable Long userid, Model model) {
+		User u = uService.detail(userid);
+		model.addAttribute("user", u);
+		return "/userboardpetstory";
+	}
+
+	// 마이페이지폼
+	@GetMapping("/userpet/{userid}")
+	public String ddetail(@PathVariable Long userid, Model model) {
+		User u = uService.detail(userid);
+		model.addAttribute("user", u);
+		return "/userpet";
 	}
 
 	// 마이페이지에서 상담게시글 전체보기
@@ -82,6 +115,14 @@ public class UserController {
 	public List<CommentPetStory> pclist(@PathVariable Long userid) {
 		List<CommentPetStory> user = uRepository.findByUser5(userid);
 		return user;
+	}
+
+	// 마이페이지에서 자유게시판댓글 전체보기
+	@GetMapping("/pet/petlist/{userid}")
+	@ResponseBody
+	public List<Pet> petlist(@PathVariable Long userid) {
+		List<Pet> pet = uRepository.findByUser6(userid);
+		return pet;
 	}
 
 	@GetMapping("/user/userlist")

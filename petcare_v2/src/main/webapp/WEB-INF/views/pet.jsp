@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
-<div class="container">
-	<h3>애완동물 등록</h3>
+<div class="container mt-3">
+	<h3>애완동물 등록</h3><br/><br/>
 	
 	<div class="form-group">
 		<label for="imagepet">사진:</label> <input type="file"
@@ -34,8 +34,6 @@
 				name="petweight">
 		</div>
 		
-	
-	
 	<div class="form-group">
 	 <label for="petneutering">중성화여부:</label> 
       O<input type="radio" name="petneutering"  id="petneutering" value="O" checked >
@@ -49,7 +47,7 @@
 	<div id="pet">
 	품종:
 <select name="petbreed" id="petbreed"></select>
-<select name="petbreeds"id="petbreeds" ></select>
+<select name="petbreeds"id="petbreeds" ></select><br/><br/>
 
 	</div>
 	
@@ -125,7 +123,7 @@
 			}).done(function(resp) {
 				if (resp == "success") {
 					alert("등록이 정상적으로 처리되었습니다.")
-					location.href="/pet"
+					location.href="/pet/{userid}"
 				} else if (resp == "fail") {
 					alert(".")
 					$("#username").val("")

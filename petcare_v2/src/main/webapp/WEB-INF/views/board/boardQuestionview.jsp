@@ -1,65 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="../includes/header.jsp"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
+<%@include file ="../includes/header.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<input type="hidden" name="questionID" id="questionID"
-	value="${board.questionID }" />
-<div class="container">
-	<table class="table">
-		<br><br>
-		<div>
-			<div>
-				<h3 class="title ub-word">
-					<span class="title_headtext">${board.title }</span>
-				</h3>
-			</div>
+	<input type="hidden" name="questionID" id="questionID" value="${board.questionID }" />
+	 <div class="container"> 
+    <table class="table">
+					<br><br>
+					<div>
+						<div><h3 class="title ub-word">
+						<span class="title_headtext">${board.title }</span>
+						</h3>
+						</div>
+						</div>			
+						<hr>
+						<div>
+						<div class="writer ub-writer" data-nick="작성자" data-uid="" data-loc="view">
+							<div class="fl">
+								<span class='nickname' title='작성자'>작성자:<em>${board.user.nickname } | </em></span></span>		
+								<span class="date" title="작성일"><em>${board.regdate }</em></span>
+							</div>
+							<div class="fr">
+								<span class="count"><em>조회수: ${board.hitcount }</em></span>
+								<span class="comment"><em>댓글수:${board.replycnt }</em></span>
+							</div>
+							</div>
+							<hr>
+							<span class="content"><em>${board.content }</em></span>
+							</div>
+							<div>
+							<img class="card-img-top" src="/resources/img/${board.questionimage }" style="width:50%">
+						</div>
+				
+<c:if test="${principal.user.username==board.user.username}">
+	<button type="button" class="btn btn-primary"  id="btnUpdate">수정</button>
+		<button type="button" class="btn btn-secondary" id="btnDelete">삭제</button>
+		</c:if> 
+	</div>
+	
+	<br/><br/>
+	
+	<div class="container mt-5">
+		<div class="form-group">
+			<label for="comment">Comment:</label>
+			<textarea class="form-control" rows="5" id="msg" name="text"></textarea>
 		</div>
-		<hr>
-		<div>
-			<div class="writer ub-writer" data-nick="작성자" data-uid=""
-				data-loc="view">
-				<div class="fl">
-					<span class='nickname' title='작성자'>작성자:<em>${board.user.nickname }
-							| </em></span></span> <span class="date" title="작성일"><em>${board.regdate }</em></span>
-				</div>
-				<div class="fr">
-					<span class="count"><em>조회수: ${board.hitcount }</em></span> <span
-						class="comment"><em>댓글수:${board.replycnt }</em></span>
-				</div>
-			</div>
-			<hr>
-			<span class="content"><em>${board.content }</em></span>
-		</div>
-		<div>
-			<img class="card-img-top"
-				src="/resources/img/${board.questionimage }" style="width: 50%">
-		</div>
-
-		<c:if test="${principal.user.username==board.user.username}">
-			<button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
-			<button type="button" class="btn btn-secondary" id="btnDelete">삭제</button>
-		</c:if>
-		</div>
-
-		<br />
-		<br />
-
-		<div class="container mt-5">
-			<div class="form-group">
-				<label for="comment">Comment:</label>
-				<textarea class="form-control" rows="5" id="msg" name="text"></textarea>
-			</div>
-
-			<button type="button" class="btn btn-success" id="BtnComment">댓글쓰기</button>
-
-			<div class="mt-5">댓글(${board.replycnt })</div>
-
-			<div id="replyResult"></div>
-		</div>
-
-		<script>
+		
+		<button type="button" class="btn btn-success" id="BtnComment">댓글쓰기</button>
+	
+	<div class="mt-5">댓글(${board.replycnt })</div>
+	
+	<div id="replyResult"></div>
+	</div>
+	
+	<script>
 	var init=function(){
 		$.ajax({
 			type:"get",
@@ -72,7 +67,7 @@
 				str+="<td>"+val.username+"</td>"
 				str+="<td>"+val.content+"</td>"
 				str+="<td>"+val.regdate+"</td>"
-				if("${principal.user.username}"==val.username){
+				if("${principal.user.nickname}"==val.username){
 				str+="<td>"+"<a href='javascript:fdel("+val.comquestionID+")'>삭제</a>"+"</td>"
 				}
 				str+="</tr>"
@@ -153,4 +148,4 @@
 	})//btnDelete
 	init();
 	</script>
-		<%@ include file="../includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp"%>

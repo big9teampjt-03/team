@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class CommentListVO {
-	private List<CommentPetStory> carr;
+	private  List<CommentPetStory> carr;
 	private int count;
 	
 	public CommentListVO(List<CommentPetStory> carr, int count) {

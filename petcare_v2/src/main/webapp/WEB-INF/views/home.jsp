@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>Carousel Template · Bootstrap v5.2</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 
@@ -139,21 +138,21 @@
       <div class="col-lg-4">
       	<br/>
       	<br/>
-        <h2 class="fw-normal">공지 사항 <img src="https://cdn-icons-png.flaticon.com/512/4812/4812820.png" style="width:100px; height:100px"/></h2>
-        <p>공지사항 내용을 적어야되는데 뭐라구 적어야된라가가.</p>
+        <h2 class="fw-normal">소개 글 <img src="https://cdn-icons-png.flaticon.com/512/4812/4812820.png" style="width:100px; height:100px"/></h2>
+        <p>헬스케어와 커뮤니티를 결합한 반려동물 케어 커뮤니티 사이트입니다. </p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
        <br/>
       	<br/>
         <h2 class="fw-normal">추천 수의사 <img src="https://cdn-icons-png.flaticon.com/512/2138/2138349.png" style="width:100px; height:100px"/></h2>
-        <p>수의사들의 목록을 볼 수 있따~~~~~~~~~~~~~~~~~~~~~~</p>
-        <p><a class="btn btn-primary" href="">바로가기 &raquo;</a></p>
+        <p>각종 분야의 다양한 수의사들의 정보를 확인하실 수 있습니다.</p>
+        <p><a class="btn btn-primary" href="/board/boardDocList">바로가기 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
 		<br/>
       	<br/>
-        <h2 class="fw-normal">인기 게시글<img src="https://cdn-icons-png.flaticon.com/512/1959/1959927.png" style="width:100px; height:100px"/></h2>
-        <p>회원님들이 게시하신 글을 볼 수 있다라고 적어야될지 뭐라고 해야될지`~~</p>
+        <h2 class="fw-normal">인기 스토리<img src="https://cdn-icons-png.flaticon.com/512/1959/1959927.png" style="width:100px; height:100px"/></h2>
+        <p>커뮤니티 회원들이 자유롭게 반려동물들의 사진을 공유하고 게시할 수 있습니다. </p>
         <p><a class="btn btn-primary" href="/board/list">바로가기 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
@@ -186,7 +185,7 @@
                 </ul>
         
                 <br>
-                <h4>"의식있는 사람들이 항상 그러는 것처럼, 동물을 걱정하는 태도는 강자에 대항해 약자의 편에 서는 것이다."-해리엇 비처 스토우</h4>
+         
             </div>
         </div>
         <!--가운데 선을 그려줌-->
@@ -204,7 +203,7 @@
                     <li class="list-group-item">tel.02-391-75027</li>
                 </ul>
                 <br>
-                <h4>"인간에게는 동물을 다스릴 권리가 있는 것이 아니라 모든 생명체를 지킬 의무가 있다. - 제인 구달"</h4>
+               
             </div>
             <div class="col-5">
                 <img src="박정윤 수의사.PNG" alt="" class="w-100" style="height:500px">
@@ -227,7 +226,7 @@
                     <li class="list-group-item">tel.02-546-9539</li>
                 </ul>
                 <br>
-                <h4>"많은 비기너들이 스윙의 기본을 이해하기도 전에 스코어를 따지려든다. 이것은 걷기도 전에 뛰려는 것과 같다." -잭 니클라우스-</h4>
+                
             </div>
         </div>
         <hr>
@@ -247,7 +246,7 @@
                     <li class="list-group-item">tel.010-6789-6789</li>
                 </ul>
                 <br>
-                <h4>"냥냥펀치-</h4>
+              
             </div>
             <div class="col-5">
                 <img src="https://th.bing.com/th/id/OIP.MKlGAP8fH2KfLAQJzGhv1QHaK4?pid=ImgDet&rs=1" alt="" class="w-100" style="height:500px">

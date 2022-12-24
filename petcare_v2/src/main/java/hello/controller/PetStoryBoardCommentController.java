@@ -44,20 +44,22 @@ public ResponseEntity<String> commentInsert(@PathVariable Long petstoryID,
 
   //댓글 전체보기
   
-	/*
-	 * @GetMapping("list/{petstoryID}") public List<CommentPetStory>
-	 * list(@PathVariable Long petstoryID){ List<CommentPetStory> cpslist =
-	 * petStoryBoardCommentService.list(petstoryID);
-	 * System.out.println(cpslist.size()); return cpslist; }
-	 */
-@GetMapping("commentList/{petstoryID}")
-public CommentListVO list(@PathVariable Long petstoryID) {
-	List<CommentPetStory> carr = petStoryBoardCommentService.list(petstoryID);
-	System.out.println(carr.get(0).getUser().getNickname());
-	int count = petStoryBoardCommentService.getCount(petstoryID);
-	CommentListVO cvo = new CommentListVO(carr, count);
-	return cvo;
-}
+	
+	  @GetMapping("list/{petstoryID}") 
+	  public List<CommentPetStory> list(@PathVariable Long petstoryID) { 
+		  List<CommentPetStory> cpslist = petStoryBoardCommentService.list(petstoryID);
+		  System.out.println(cpslist.size());
+		  return cpslist;
+	  }
+
+//@GetMapping("commentList/{petstoryID}")
+//public CommentListVO list(@PathVariable int petstoryID) {
+//	List<CommentPetStory> carr = petStoryBoardCommentService.list(petstoryID);
+//	System.out.println(carr.get(0).getUser().getNickname());
+//	int count = petStoryBoardCommentService.getCount(petstoryID);
+//	CommentListVO cvo = new CommentListVO(carr, count);
+//	return cvo;
+//}
   
   //댓글 삭제
   @DeleteMapping("delete/{competstoryID}")
@@ -66,5 +68,7 @@ public CommentListVO list(@PathVariable Long petstoryID) {
 	  return competstoryID;
   }
   
+  
+ 
 
 }

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +21,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -34,8 +34,7 @@ public class BoardPetstory {
 	private Long petstoryID;
 	private String title;
 	private String content;
-	@Column(nullable=false)
-	private String username;
+	
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP) // 교재 75페이지 참고
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -56,6 +55,7 @@ public class BoardPetstory {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="wuser")
+	@JsonIgnore
 	private User user;
 	
 	@Transient

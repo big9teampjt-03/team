@@ -20,7 +20,7 @@
 		
 		<div class="form-group">
 			<label for="username">작성자:</label> <input type="text"
-				class="form-control" id="username" name="username" value="<sec:authentication property="principal.username"/>" readonly="readonly">
+				class="form-control" id="username" name="username" value="<sec:authentication property="principal.user.nickname"/>" readonly="readonly">
 		</div>
 		
 		<div class="form-group">

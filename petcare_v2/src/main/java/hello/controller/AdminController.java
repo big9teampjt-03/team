@@ -49,7 +49,7 @@ public class AdminController {
 
 	@GetMapping("/admin/docdetail/{doctorid}")
 	public String docdetail(@PathVariable Long doctorid, Model model) {
-		model.addAttribute("doctor", dService.detail(doctorid));
+		model.addAttribute("doctor", dService.docdetail(doctorid));
 		return "/admin/docdetail";
 	}
 

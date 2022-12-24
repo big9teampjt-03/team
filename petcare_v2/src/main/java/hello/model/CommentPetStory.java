@@ -42,6 +42,7 @@ public class CommentPetStory {
 	//userid
 	@ManyToOne
 	@JoinColumn(name="wuser")
+	@JsonIgnore
 	private User user;
 
 }

@@ -56,7 +56,7 @@ public class User implements Serializable {
 	@JsonIgnoreProperties("user")
 	private Doctor doctor;
 	
-	@OneToMany(mappedBy="user")
-	private List<BoardCounsel> list;
+//	@OneToMany(mappedBy="user")
+//	private List<BoardCounsel> list;
 	
     }

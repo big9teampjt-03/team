@@ -49,7 +49,7 @@
 	<p align="right">
 		<button type="button" class="btn btn-success" id="BtnComment">댓글쓰기</button>
 	</p>
-	<div class="mt-5">댓글(<span class="replySpan"></span>)</div>
+	<div class="mt-5">댓글(${board.replycnt })</div>
 	
 	<div id="replyResult"></div>
 	</div>
@@ -68,7 +68,7 @@
 				str+="<td>"+val.username+"</td>"
 				str+="<td>"+val.content+"</td>"
 				str+="<td>"+val.regdate+"</td>"
-				if("${principal.user.username}"==val.username){
+				if("${principal.user.nickname}"==val.username){
 				str+="<td>"+"<a href='javascript:fdel("+val.comcounselID+")'>삭제</a>"+"</td>"
 				}
 				str+="</tr>"
@@ -106,7 +106,7 @@
 			return;
 		}
 		var data={
-				//"comcounselID":$("#comcounselID").val(),
+				"counselID":$("#counselID").val(),
 				"content":$("#msg").val()
 		}
 		$.ajax({

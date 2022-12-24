@@ -24,8 +24,10 @@ public class CommentQuestionService {
 		BoardQuestion b = bqRepository.findById(qcomment.getBQuestion().getQuestionID()).get();
 		b.setReplycnt(b.getReplycnt() + 1);
 
-		commentqRepository.insert(qcomment.getContent(), qcomment.getBQuestion().getQuestionID(),
-				qcomment.getUser().getUsername(), qcomment.getUser().getUserid());
+		commentqRepository.insert(qcomment.getContent(), 
+				qcomment.getBQuestion().getQuestionID(),
+				qcomment.getUser().getUsername(),
+				qcomment.getUser().getUserid());
 		// cqcomment.getDoctor().getDoctorID());
 	}
 

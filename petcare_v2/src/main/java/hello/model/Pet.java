@@ -23,14 +23,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="pet")
 public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long petid;
 	private String petname;
 	
-	// @CreationTimestamp
+	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date petbirth;
@@ -40,7 +40,7 @@ public class Pet {
 	private String petbreed;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "wuser")
 	private User user;
 	
 	private String petneutering;

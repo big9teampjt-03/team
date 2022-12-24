@@ -17,5 +17,9 @@ public interface CommentCounselRepository extends JpaRepository<CommentCounsel, 
 	@Modifying
 	@Query(value = "insert into comment_counsel(content,regdate,bcounselnum,username,wuser) values(?1,now(),?2,?3,?4)", nativeQuery = true)
 	public void insert(String content, Long bcounselnum, String username, Long wuser);
+	
+	@Query("select sc from comment_counsel sc join fetch sc.user where bcounselnum=?1")//LAZY(패치조인 사용)
+	 public List<CommentCounsel> cslist(Long questionID);
+	
 
 }

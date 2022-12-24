@@ -3,26 +3,94 @@
 <%@include file = "/WEB-INF/views/includes/header.jsp" %>
  <input type="hidden" name="userid" id="userid" value="${user.userid}">
 <br>
-<div class="container">    
-  
-<div class="form-group">
- <h3>My Story</h3>
-     <br>
-     
-     <h5>내가 쓴 게시글</h5>
-     <div id="cboardResult"></div>
-     <div id="qboardResult"></div>
-     <hr>
-      <h5>내가 쓴 댓글</h5>
-     <div id="creplyResult"></div>
-     <div id="qreplyResult"></div>
-</div>
-<br/>
-    <button type="button" class="btn btn-primary" id="btnUpdate">수정</button>	   
-    <button type="button" class="btn btn-danger" id="btnDelete">탈퇴</button>	 
+
+<style>
+*{
+margin:0;
+padding:0;
+}
+
+ul,li{
+list-style:none;}
+
+a{
+text-decoration:none;
+color:white;
+}
+
+.menu_wrap .dep1{
+font-size:0;
+}
+
+.menu_wrap .dep1>li{
+display:inline-black;
+width:100px;
+background:#0080FF; 
+text-align:center;
+font-size:16px;
+}
+
+.menu_wrap .dep1>li:hover>a{
+background:#0080FF; 
+color:#fff;}
+
+.menu_wrap .dep1>li:hover > .dep2{
+display:block}
+.menu_wrap .dep1>li>a{
+display:block;
+padding :10px 0;
+}
+.menu_wrap .dep2{
+display:none;
+background:#81BEF7;
+}
+.menu_wrap .dep2 a{
+display:block;
+padding:10px 0;}
+
+.menu_wrap .dep2 a:hover{
+text-decoration:underline;}
 
 
+</style>
+
+
+<div class="container mt-3">
+	<div class="row my-6">
+		<div class="col-2">
+			<div class="menu_wrap">
+				<ul class="dep1">
+					<li><a href="#">작성한 글 </a>
+						<ul class="dep2">
+							<li><a href="#">내 반려견</a></li>
+							<li><a href="#">상담게시판</a></li>
+							<li><a href="#">자유게시판</a></li>
+							<li><a href="#">펫스토리</a></li>
+							<li><a href="#">댓글</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-10">
+			<div class="form-group">
+				<h3>My Story</h3>
+				<br>
+				<h5>내가 쓴 게시글</h5>
+				<div id="cboardResult"></div>
+				<div id="qboardResult"></div>
+				<hr>
+				<h5>내가 쓴 댓글</h5>
+				<div id="creplyResult"></div>
+				<div id="qreplyResult"></div>
+			</div>
+			<br />
+			<button type="button" class="btn btn-primary" id="btnUpdate">수정</button>
+			<button type="button" class="btn btn-danger" id="btnDelete">탈퇴</button>
+		</div>
+	</div>
 </div>
+
+
 <script>
 var init = function(){
 	$.ajax({

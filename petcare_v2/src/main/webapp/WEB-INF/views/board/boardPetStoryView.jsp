@@ -24,7 +24,7 @@
 					<button type="button" style ="border:0"> <img src="https://cdn-icons-png.flaticon.com/512/105/105220.png" id="btnLikes" height ="20" width="20" /></button>
 					<span id="likes">${bpsboard.likes}</span>
 					 <img src="https://cdn-icons-png.flaticon.com/512/159/159078.png" width="20" height="20"> ${bpsboard.hitcount}
-						 <img src="https://cdn-icons-png.flaticon.com/512/5338/5338282.png" width="20" height="20"><span class="replySpan"></span>
+						 <img src="https://cdn-icons-png.flaticon.com/512/5338/5338282.png" width="20" height="20">${bpsboard.replycnt}
 				</div>
 				<!--card-body  -->
 			</div>
@@ -46,7 +46,7 @@
 		<textarea rows="3" cols="50" id="msg"></textarea>
 	</div>
 	<button type=button class="btn btn-secondary btn-sm" id="btnComment">댓글쓰기</button>
-	<div class="mt-5">댓글(<span class="replySpan"></span>)</div>
+	<div class="mt-5">댓글(${bpsboard.replycnt})</div>
 	<div id="replyResult"></div>
 </div>
 </center>
@@ -55,19 +55,17 @@
  var init = function(){
 	$.ajax({
 		type:"get",
-		url:"/reply/commentList/"+$("#petstoryID").val()
+		url:"/reply/list/"+$("#petstoryID").val()
 	})
 	.done(function(resp){
-		$(".replySpan").text(resp.count)
 		var str ="<table class = 'table table-hover'>"
-			
-		$.each(resp.carr, function(key, val){
+		$.each(resp, function(key, val){
 			str+="<tr>"
-		  	str+="<td>" +val.user.nickname+"</td>"  
+			str+="<td>" +val.username+"</td>"
 			str+="<td>" +val.content+"</td>"
 			str+="<td>" +val.regdate+"</td>"
-			if("${principal.user.username}"==val.user.username){
-			str+="<td>"+"<a href='javascript:fdel("+val.competstoryID+")'>삭제</a>"+"</td>"} 
+			if("${principal.user.nickname}"==val.username){
+			str+="<td>"+"<a href='javascript:fdel("+val.competstoryID+")'>삭제</a>"+"</td>"}
 			str+="</tr>"
 			
 		})
@@ -75,6 +73,7 @@
 		$("#replyResult").html(str)
 	})//done
 }//init
+
 $("#btnComment").click(function(){
 	if(${empty principal.user}){
 		alert("로그인하세요")
@@ -104,7 +103,11 @@ $("#btnComment").click(function(){
 	.fail(function(){
 		alert("댓글 추가 실패")
 		})
+
 })
+
+
+
 function fdel(competstoryID){
 		if(!confirm('정말 댓글을 삭제할까요?')){
 			return false;
@@ -122,11 +125,17 @@ function fdel(competstoryID){
 			location.href="/login"
 		})
 	}
+
+
+
+
 $("#btnUpdate").click(function(){
 	if(confirm("정말 수정할까요?")){
 		location.href ="/board/update/${bpsboard.petstoryID}"
 	}
 })
+
+
 $("#btnDelete").click(function(){
 	if(!confirm("정말 삭제할까요?")) return
 	$.ajax({
@@ -143,6 +152,7 @@ $("#btnDelete").click(function(){
 		}
 	})//ajax
 }) //btnDelete
+
 $("#btnLikes").click(function(){
 	//alert($("#likes").text())
 	data ={
@@ -160,10 +170,13 @@ $("#btnLikes").click(function(){
 			$("#likes").text(resp)
 		},
 		error:function(e){
-			alert("좋아요 실패" + e)
+			alert("종아요 실패" + e)
 		}
 	})
 	
 })
+
 init();
+
 </script>
+

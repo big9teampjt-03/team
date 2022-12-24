@@ -11,9 +11,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hello.model.BoardCounsel;
+import hello.model.BoardPetstory;
 import hello.model.BoardQuestion;
 import hello.model.CommentCounsel;
+import hello.model.CommentPetStory;
 import hello.model.CommentQuestion;
+import hello.model.Pet;
 import hello.model.Role;
 import hello.model.User;
 import hello.repository.UserRepository;
@@ -68,25 +71,38 @@ public class UserService {
 		return uRepository.count();
 	}
 
-	// 마이페이지에서 상담게시글 뿌리기
-	public List<BoardCounsel> findByID(Long wuser) {
-		return uRepository.findByUser(wuser);
+	//마이페이지에서 상담게시글 뿌리기
+	public List<BoardCounsel> findByID(Long wuser){
+		return uRepository.findByUser(wuser);	
 	}
-
-	// 마이페이지에서 자유게시판게시글 뿌리기
-	public List<BoardQuestion> findByID2(Long wuser) {
+	
+	//마이페이지에서 자유게시판게시글 뿌리기
+	public List<BoardQuestion> findByID2(Long wuser){
 		return uRepository.findByUser2(wuser);
+		}
+	
+	//마이페이지에서 펫스토리 게시글 뿌리기
+	public List<BoardPetstory> findByID4(Long wuser){
+		return uRepository.findByUser4(wuser);
 	}
-
-	// 마이페이지에서 상담댓글 뿌리기
-	public List<CommentCounsel> findByID1(Long wuser) {
+	
+	//마이페이지에서 상담댓글 뿌리기
+	public List<CommentCounsel> findByID1(Long wuser){
 		return uRepository.findByUser1(wuser);
 	}
-
-	// 마이페이지에서 자유게시판댓글 뿌리기
-	public List<CommentQuestion> findByID3(Long wuser) {
+	//마이페이지에서 자유게시판댓글 뿌리기
+	public List<CommentQuestion> findByID3(Long wuser){
 		return uRepository.findByUser3(wuser);
+			
+		}
+	//마이페이지에서 펫스토리 댓글 뿌리기
+	public List<CommentPetStory> findByID5(Long wuser){
+		return uRepository.findByUser5(wuser);
+	}
 
+	//마이페이지에서 자유게시판댓글 뿌리기
+	public List<Pet> findByID6(Long wuser){
+		return uRepository.findByUser6(wuser);
 	}
 
 }

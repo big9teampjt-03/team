@@ -43,6 +43,7 @@ public class CommentCounsel {
 	
 	@ManyToOne
 	@JoinColumn(name="wuser")
+	@JsonIgnore
 	private User user;
 	
 }

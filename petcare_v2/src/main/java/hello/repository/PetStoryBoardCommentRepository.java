@@ -10,7 +10,7 @@ import hello.model.CommentPetStory;
 
 public interface PetStoryBoardCommentRepository extends JpaRepository<CommentPetStory, Long>{
 	@Modifying
-	@Query(value = "insert into comment_pet_story(content, regdate, bpetstorynum, username, wuser) values(?1,now(), ?2, ?3, ?4)",nativeQuery = true)
+	@Query(value = "insert into comment_pet_story(content, regdate, bpetstorynum, username, wuser) values(?1, now(), ?2, ?3, ?4)",nativeQuery = true)
 	public void insert(String content, Long bum, String username, Long wuser);
 	
 	 //@Query("select cps from comment_pet_story cps where petstoryID =?1") public
@@ -19,9 +19,9 @@ public interface PetStoryBoardCommentRepository extends JpaRepository<CommentPet
 	 
 	// @Query(value="select * from comment_pet_story where bpetstorynum=:petstoryID",nativeQuery = true)
 	 @Query("select sc from comment_pet_story sc join fetch sc.user where bpetstorynum=?1")//LAZY(패치조인 사용)
-	 public List<CommentPetStory> list(Long petstoryID);
+	 public List<CommentPetStory> list(int petstoryID);
 	 
 	 @Query(value="select count(*) from comment_pet_story where bpetstorynum=:petstoryID",nativeQuery = true)
-	 public  int getCount(Long petstoryID);
+	 public  int getCount(int petstoryID);
 
 }

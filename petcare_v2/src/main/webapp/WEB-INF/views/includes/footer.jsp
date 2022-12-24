@@ -3,7 +3,7 @@
 <footer class="page-footer font small blue">
 <!-- Copyright -->
 	<div class = "footer-copyright text-center py-3">© 2022 Copyright:
-		<a href="#">spring.petcareservice.com</a>
+		<a href="#">petcareservice.busanIT.com</a>
 	</div>
 </footer>
 </body>

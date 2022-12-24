@@ -6,7 +6,7 @@
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<div class="form-group">
 			<input type="hidden" class="form-control" id="userid" name="userid"
-				value="${principal.user.userid }" readonly="readonly">
+				value="${doctor.user.userid }" readonly="readonly">
 		</div>
 
 		<div class="form-group">
@@ -62,7 +62,8 @@
 		<button class="btn btn-info">승인 대기중입니다. 잠시만 기다려 주세요.</button>
 		</c:when>
 		<c:when test="${doctor.approval == 1}">
-		<button class="btn btn-info" onclick="location.href='/docupdate/${doctor.doctorid }';">
+		<button class="btn btn-info" onclick="window.open('/docupdate/${doctor.doctorid }', 
+		'window_name', 'width=800, height=600, location=no, status=no, scrollbars=yes')">
 		전문가 정보 수정하기</button>
 		</c:when>
 		</c:choose>

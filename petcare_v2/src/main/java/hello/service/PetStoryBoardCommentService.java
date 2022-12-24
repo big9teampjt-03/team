@@ -28,24 +28,16 @@ public class PetStoryBoardCommentService {
 		bpsboard.setReplycnt(bpsboard.getReplycnt() + 1);
 
 		petStoryBoardCommentRepository.insert(petStoryBoardComment.getContent(),
-				petStoryBoardComment.getBPetstoryl().getPetstoryID(), petStoryBoardComment.getUser().getUsername(),
+				petStoryBoardComment.getBPetstoryl().getPetstoryID(),
+				petStoryBoardComment.getUser().getNickname(),
 				petStoryBoardComment.getUser().getUserid());
 
 		// petStoryBoardCommentRepository.save(petStoryBoardComment);
 
 	}
 
-	/*
-	 * public List<CommentPetStory> list(Long petstoryID) { return
-	 * petStoryBoardCommentRepository.findByPetStoryId(petstoryID); }
-	 */
-
 	public List<CommentPetStory> list(Long petstoryID) {
-		return petStoryBoardCommentRepository.list(petstoryID);
-	}
-
-	public int getCount(Long petstoryID) {
-		return petStoryBoardCommentRepository.getCount(petstoryID);
+		return petStoryBoardCommentRepository.findByPetStoryId(petstoryID);
 	}
 
 	@Transactional

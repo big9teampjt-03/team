@@ -1,61 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="includes/header.jsp"%>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<title>전문가 정보 수정하기</title>
+</head>
+<body>
 <div class="container mt-3">
-	<h3>${principal.user.nickname}님의 전문가 정보 등록하기</h3>
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<div class="form-group">
-			<input type="hidden" class="form-control" id="userid" name="userid"
-				value="${principal.user.userid }" readonly="readonly">
+			<input type="hidden" class="form-control" id="doctorid" name="doctorid"
+				value="${doctor.doctorid }" readonly="readonly">
 		</div>
 
 		<div class="form-group">
 			<label for="docname">이름(실명):</label> <input type="text"
-				class="form-control" id="docname" placeholder="이름(실명)을 입력해 주세요."
+				class="form-control" id="docname" value=${doctor.docname }
 				name="docname">
 		</div>
 
 		<div class="form-group">
 			<label for="doclicensenum">의사 면허 번호:</label> <input type="text"
 				class="form-control" id="doclicensenum"
-				placeholder="면허 번호를 입력해 주세요." name="doclicensenum">
+				 value=${doctor.doclicensenum } name="doclicensenum">
 		</div>
 
 		<div class="form-group">
 			<label for="dochospital">병원 이름:</label> <input type="text"
-				class="form-control" id="dochospital" placeholder="병원 이름을 입력해 주세요."
+				class="form-control" id="dochospital"  value=${doctor.dochospital }
 				name="dochospital">
 		</div>
 
 		<div class="form-group">
 			<label for="dochospitaltel">병원 전화번호:</label> <input type="text"
 				class="form-control" id="dochospitaltel"
-				placeholder="병원 전화번호를 입력해 주세요." name="dochospitaltel">
+				 value=${doctor.dochospitaltel } name="dochospitaltel">
 		</div>
 
 		<div class="form-group">
 			<label for="dochospitaladdr">병원 주소:</label> <input type="text"
 				class="form-control" id="dochospitaladdr"
-				placeholder="병원 주소를 입력해 주세요." name="dochospitaladdr">
+				 value=${doctor.dochospitaladdr } name="dochospitaladdr">
 		</div>
 
 		<div class="form-group">
 			<label for="dochospitalpostal">병원 우편번호:</label> <input type="text"
 				class="form-control" id="dochospitalpostal"
-				placeholder="병원 우편번호를 입력해 주세요." name="dochospitalpostal">
+				 value=${doctor.dochospitalpostal } name="dochospitalpostal">
 		</div>
 
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="imagedocprofile">프로필 사진:</label> <input type="file" -->
-<!-- 				id="imagedocprofile" placeholder="사진을 등록해 주세요." -->
-<!-- 				name="imagedocprofile"> -->
-<!-- 		</div> -->
+		<div class="form-group">
+			<label for="imagedocprofile">프로필 사진:</label> <input type="file"
+				id="imagedocprofile" placeholder="사진을 등록해 주세요."
+				name="imagedocprofile">
+		</div>
 
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="imagedoclicense">의사 면허증:</label> <input type="file" -->
-<!-- 				id="imagedoclicense" placeholder="면허증을 등록해 주세요." -->
-<!-- 				name="imagedoclicense"> -->
-<!-- 		</div> -->
+		<div class="form-group">
+			<label for="imagedoclicense">의사 면허증:</label> <input type="file"
+				id="imagedoclicense" placeholder="면허증을 등록해 주세요."
+				name="imagedoclicense">
+		</div>
 
 		<button class="btn btn-info" id="btnDocApproval">승인 요청하기</button>
 </div>
@@ -63,7 +78,7 @@
 <script>
 	$("#btnDocApproval").click(function() {
 		var dataParam = {
-			"user_id":$("#userid").val(),
+			"doctorid":$("#doctorid").val(),
 			"docname" : $("#docname").val(),
 			"doclicensenum" : $("#doclicensenum").val(),
 			"dochospital" : $("#dochospital").val(),
@@ -72,14 +87,14 @@
 			"dochospitalpostal" : $("#dochospitalpostal").val(),
 		}
 		$.ajax({
-			type : "POST",
-			url : "/docupdate/"+$("#userid").val(),
+			type : "PUT",
+			url : "/docupdate/",
 			contentType : "application/json;charset=utf-8",
 			data : JSON.stringify(dataParam)
 		}).done(function(resp) {
 			if (resp == "success") {
 				alert("승인 요청되었습니다.")
-				location.href = "/update/${principal.user.userid }"
+				self.close();
 			}
 		}) //done
 		.fail(function() {
@@ -87,4 +102,5 @@
 		})
 	})
 </script>
-<%@ include file="includes/footer.jsp"%>
+</body>
+</html>

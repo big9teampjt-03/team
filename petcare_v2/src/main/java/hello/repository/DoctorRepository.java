@@ -16,6 +16,5 @@ public interface DoctorRepository
 	nativeQuery = true)
 	public void insert(String docname, String doclicensenum, String dochospital, String dochospitaltel, String dochospitaladdr, String dochospitalpostal, Long user_id, String role, Date regdate);
 	
-	
 
 }

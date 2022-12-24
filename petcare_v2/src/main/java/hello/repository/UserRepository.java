@@ -12,6 +12,7 @@ import hello.model.BoardQuestion;
 import hello.model.CommentCounsel;
 import hello.model.CommentPetStory;
 import hello.model.CommentQuestion;
+import hello.model.Pet;
 import hello.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
@@ -36,4 +37,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Query("select sc from comment_pet_story sc join fetch sc.user where wuser=?1")
 	public List<CommentPetStory> findByUser5(Long wuser);
+	
+	@Query("select sc from pet sc join fetch sc.user where wuser=?1")
+	public List<Pet> findByUser6(Long wuser);
 }

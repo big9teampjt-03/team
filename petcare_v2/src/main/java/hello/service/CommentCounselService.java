@@ -24,8 +24,10 @@ public class CommentCounselService {
 		BoardCounsel b = bcRepository.findById(cscomment.getBCounsel().getCounselID()).get();
 		b.setReplycnt(b.getReplycnt() + 1);
 
-		commentcRepository.insert(cscomment.getContent(), cscomment.getBCounsel().getCounselID(),
-				cscomment.getUser().getUsername(), cscomment.getUser().getUserid());
+		commentcRepository.insert(cscomment.getContent(), 
+				cscomment.getBCounsel().getCounselID(),
+				cscomment.getUser().getUsername(),
+				cscomment.getUser().getUserid());
 		// cscomment.getDoctor().getDoctorID());
 	}
 
@@ -34,12 +36,21 @@ public class CommentCounselService {
 	}
 
 	@Transactional
-	public void delete(Long comcounselID, CommentCounsel cscomment) {
+	public void cdelete(Long comcounselID, CommentCounsel cscomment) {
+
 		// 댓글개수감소 //
 		Optional<CommentCounsel> c = commentcRepository.findById(comcounselID);
 		BoardCounsel b = c.get().getBCounsel();
 		b.setReplycnt(b.getReplycnt() - 1); // 댓글삭제
 		commentcRepository.deleteById(comcounselID);
 	}
+
+	public List<CommentCounsel> cslist(Long questionID) {
+		return commentcRepository.cslist(questionID);
+	}
+
+//	public int getCscount(Long questionID) {
+//		return commentcRepository.getCscount(questionID);
+//	}
 
 }
