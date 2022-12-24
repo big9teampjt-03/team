@@ -33,14 +33,14 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	public List<CommentQuestion> findByUser3(Long wuser);
 
 	@Query("select sc from bPetstoryl sc join fetch sc.user where wuser=?1")
-	public List<BoardPetstory> findByUser4(Long userid);
+	public List<BoardPetstory> findByUser4(Long wuser);
 	
 	@Query("select sc from comment_pet_story sc join fetch sc.user where wuser=?1")
 	public List<CommentPetStory> findByUser5(Long wuser);
 	
-	@Query("select sc from pet sc join fetch sc.user where wuser=?1")
-	public List<Pet> findByUser6(Long wuser);
-	
 	@Query("select sc from pet sc join fetch sc.user where puser=?1")
-	public List<User> findByPets(Long puser); 
+	public List<Pet> findByUser6(Long puser);
+	
+//	@Query("select sc from pet sc join fetch sc.user where puser=?1")
+//	public List<User> findByPets(Long puser); 
 }

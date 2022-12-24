@@ -82,7 +82,8 @@ var init = function(){
 		var str="<table class='table table-hover'>"
 		$.each(resp,function(key,val){
 			str+="<tr>"
-			str+="<td>"+"이름: "+"<a href=/petlist/>"+val.petname+"</td>"
+			str+="<td><img src=/resources/img/"+val.imagepet+" width=100 height=100/></td>"
+			str+="<td>"+"이름: "+"<a href=/petlist/"+val.petid+">"+val.petname+"</td>"
 			str+="<td>"+"생년월일: "+val.petbirth+"</td>"
 			str+="<td>"+"몸무게: "+val.petweight+"</td>"
 			str+="</tr>"

@@ -60,17 +60,17 @@
 				 value=${doctor.dochospitalpostal } name="dochospitalpostal">
 		</div>
 
-		<div class="form-group">
-			<label for="imagedocprofile">프로필 사진:</label> <input type="file"
-				id="imagedocprofile" placeholder="사진을 등록해 주세요."
-				name="imagedocprofile">
-		</div>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="imagedocprofile">프로필 사진:</label> <input type="file" -->
+<!-- 				id="imagedocprofile" placeholder="사진을 등록해 주세요." -->
+<!-- 				name="imagedocprofile"> -->
+<!-- 		</div> -->
 
-		<div class="form-group">
-			<label for="imagedoclicense">의사 면허증:</label> <input type="file"
-				id="imagedoclicense" placeholder="면허증을 등록해 주세요."
-				name="imagedoclicense">
-		</div>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="imagedoclicense">의사 면허증:</label> <input type="file" -->
+<!-- 				id="imagedoclicense" placeholder="면허증을 등록해 주세요." -->
+<!-- 				name="imagedoclicense"> -->
+<!-- 		</div> -->
 
 		<button class="btn btn-info" id="btnDocApproval">승인 요청하기</button>
 </div>

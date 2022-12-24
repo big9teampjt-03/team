@@ -10,8 +10,8 @@
 			class="form-control" id="username" placeholder="이메일을 입력하세요."
 			name="username">
 	</div>
-	<input type="button" class="btn btn-secondary" onclick="btnEmail"
-		value="중복확인" />
+<!-- 	<input type="button" class="btn btn-secondary" onclick="btnEmail" -->
+<!-- 		value="중복확인" /> -->
 		
 	<div class="form-group">
 		<label for="password">비밀번호:</label> <input type="password"

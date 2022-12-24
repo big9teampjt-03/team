@@ -30,7 +30,7 @@ public class PetController {
 	private PetRepository pRepository;
 	@Autowired
 	private PetService pService;
-	@Autowired 
+	@Autowired
 	private UserService uService;
 
 	// 애완동물 등록폼
@@ -43,7 +43,8 @@ public class PetController {
 
 	// 등록생성
 	@PostMapping("pet")
-	public String petjoin(Pet pet, @AuthenticationPrincipal PrincipalUser principal,HttpSession session) throws ParseException {
+	public String petjoin(Pet pet, @AuthenticationPrincipal PrincipalUser principal, HttpSession session)
+			throws ParseException {
 		String uploadFolder = session.getServletContext().getRealPath("/") + "\\resources\\img";
 		User user = principal.getUser();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -51,23 +52,22 @@ public class PetController {
 		pet.setPetbirth(to);
 		System.out.println("pet.getPetbirth() :" + pet.getPetbirth());
 		pet.setUser(user);
-		pService.insert(pet,uploadFolder);
-		return "redirect:/petlist/"+user.getUsername();
+		pService.insert(pet, uploadFolder);
+		return "redirect:/petlist/";
 	}
 
-	@GetMapping("pet")
-	public String pets() {
-		return "home";
-	}
-	@GetMapping("petlist/{puser}")
-	@PreAuthorize("isAuthenticated()")
-	public String petlist(@PathVariable Long puser ,Model model) {
-	  List<User> user =   uService.list(puser);
-	  model.addAttribute("user",user);
+//	@GetMapping("petlist/{puser}")
+//	@PreAuthorize("isAuthenticated()")
+//	public String petlist(@PathVariable Long puser ,Model model) {
+//	  List<User> user =   uService.list(puser);
+//	  model.addAttribute("user",user);
+//		return "petlist";
+//	}
+
+	@GetMapping("petlist/{petid}")
+	public String petlist(@PathVariable Long petid, Model model) {
+		model.addAttribute("pet", pService.petdetail(petid));
 		return "petlist";
 	}
-	
+
 }
-
-	
-
