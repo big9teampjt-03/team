@@ -35,7 +35,7 @@ public class BoardQuestion {
 		private Long questionID;
 		private String title;
 		private String content;
-		
+		private String username;
 		@CreationTimestamp
 		@Temporal(TemporalType.TIMESTAMP)
 		@JsonFormat(pattern="yyyy-MM-dd")

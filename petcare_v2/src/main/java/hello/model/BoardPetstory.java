@@ -34,7 +34,7 @@ public class BoardPetstory {
 	private Long petstoryID;
 	private String title;
 	private String content;
-	
+	private String username;
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP) // 교재 75페이지 참고
 	@JsonFormat(pattern="yyyy-MM-dd")
