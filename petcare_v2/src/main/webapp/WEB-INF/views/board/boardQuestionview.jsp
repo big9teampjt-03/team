@@ -67,7 +67,7 @@
 				str+="<td>"+val.username+"</td>"
 				str+="<td>"+val.content+"</td>"
 				str+="<td>"+val.regdate+"</td>"
-				if("${principal.user.nickname}"==val.username){
+				if("${principal.user.username}"==val.username){
 				str+="<td>"+"<a href='javascript:fdel("+val.comquestionID+")'>삭제</a>"+"</td>"
 				}
 				str+="</tr>"

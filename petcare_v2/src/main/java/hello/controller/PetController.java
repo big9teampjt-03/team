@@ -53,7 +53,7 @@ public class PetController {
 		System.out.println("pet.getPetbirth() :" + pet.getPetbirth());
 		pet.setUser(user);
 		pService.insert(pet, uploadFolder);
-		return "redirect:/petlist/";
+		return "redirect:/";
 	}
 
 //	@GetMapping("petlist/{puser}")

@@ -19,7 +19,9 @@
 		</thead>
 
 		<tbody>
+		
 			<c:forEach items="${lists}" var="user">
+			<c:if test="${user.role=='USER' }">
 				<tr>
 					<td>${user.userid }</td>
 					<td><a href="userdetail/${user.userid}"> ${user.username }</a></td>
@@ -30,7 +32,9 @@
 					<td><button type="button" class="btnDel btn-danger btn-sm" 
 					data-mid="${user.userid }">삭제</button></td>
 				</tr>
+				</c:if>
 			</c:forEach>
+			
 		</tbody>
 	</table>
 	</div>
